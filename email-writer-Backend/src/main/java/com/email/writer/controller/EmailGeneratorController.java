@@ -4,6 +4,7 @@ package com.email.writer.controller;
 import com.email.writer.model.EmailRequest;
 import com.email.writer.service.EmailGeneratorService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,6 @@ public class EmailGeneratorController {
     
     private final EmailGeneratorService emailGeneratorService;
 
-    @Autowired
     public EmailGeneratorController(EmailGeneratorService emailGeneratorService) {
         this.emailGeneratorService = emailGeneratorService;
     }

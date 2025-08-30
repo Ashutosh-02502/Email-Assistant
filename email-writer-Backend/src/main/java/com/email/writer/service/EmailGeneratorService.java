@@ -14,15 +14,13 @@ import java.util.Map;
 @Service
 public class EmailGeneratorService {
     
-    public EmailGeneratorService() {
+    public EmailGeneratorService(WebClient.Builder webClient) {
         // Default constructor
+        this.webClient = webClient.build();
     }
 
     private final WebClient webClient;
 
-    public EmailGeneratorService(WebClient.Builder webClient) {
-        this.webClient = webClient.build();
-    }
 
     @Value("${gemini_url}")
     private String GeminiUrl;
