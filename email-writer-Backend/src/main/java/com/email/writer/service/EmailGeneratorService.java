@@ -69,7 +69,7 @@ public class EmailGeneratorService {
     private String buildPrompt(EmailRequest emailRequest) {
 
         StringBuilder prompt = new StringBuilder();
-        prompt.append("Rewrite the following email into a professional, concise, and humanized response in 20–200 words, " +
+        prompt.append("Answer the following email into a professional, concise, and humanized response in 20–200 words, " +
                 "Do not add 'subject' line or any just straight reply ");
         if(emailRequest.getTone()!=null && !emailRequest.getTone().isEmpty()){
             prompt.append("use a ").append(emailRequest.getTone()).append(" tone");
