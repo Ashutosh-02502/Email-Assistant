@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 public class EmailGeneratorController {
 
-    @Autowired
+    
     private static EmailGeneratorService emailGeneratorService;
 
     @PostMapping("/generate")
