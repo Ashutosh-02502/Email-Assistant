@@ -13,6 +13,10 @@ import java.util.Map;
 
 @Service
 public class EmailGeneratorService {
+    
+    public EmailGeneratorService() {
+        // Default constructor
+    }
 
     private final WebClient webClient;
 
