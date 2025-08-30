@@ -1,32 +1,32 @@
-FROM eclipse-temurin:17-jdk-alpine as build
-WORKDIR /app
-
-# Copy maven files
-COPY mvnw .
-COPY .mvn .mvn
+# Build stage
+FROM maven:3.8.5-openjdk-17-slim AS builder
+WORKDIR /build
 COPY pom.xml .
+COPY src ./src
 
-# Make mvnw executable
-RUN chmod +x mvnw
-
-# Copy source code
-COPY src src
+# Cache dependencies
+RUN mvn dependency:go-offline
 
 # Build the application
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
-# Create runtime image
-FROM eclipse-temurin:17-jre-alpine
+# Runtime stage
+FROM eclipse-temurin:17-jre-jammy
 WORKDIR /app
 
 # Copy the built artifact from build stage
-COPY --from=build /app/target/email-writer-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=builder /build/target/email-writer-0.0.1-SNAPSHOT.jar app.jar
 
-# Set environment variables
-ENV PORT=8080
+# Add metadata
+LABEL maintainer="Ashutosh <ashutoshbhardwaj257@gmail.com>"
+LABEL version="1.0"
+LABEL description="Gemini Chat Backend Service"
 
-# Expose the port
-EXPOSE ${PORT}
+# Configure JVM options
+ENV JAVA_OPTS="-Xmx512m -Xms256m"
+
+# Expose port
+EXPOSE 8080
 
 # Run the application
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
