@@ -3,6 +3,7 @@ import './App.css'
 import { Box, Button, CircularProgress, Container, FormControl, Input, InputLabel, MenuItem, Select, TextField, Typography, Paper, ThemeProvider, createTheme } from '@mui/material';
 import axios from 'axios';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import Footer from './Footer';
 
 const theme = createTheme({
   palette: {
@@ -45,6 +46,7 @@ function App() {
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #edeee1ff 0%, #edeee1ff 100%)',
         py: 4,
+        pb: '150px',
         position: 'relative',
         '&::before': {
           content: '""',
@@ -160,6 +162,7 @@ function App() {
                   background: 'linear-gradient(90deg, #3d3d3aec, #475569)',
                   boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
                   transition: 'all 0.3s ease',
+                  color: '#a78f54ff',
                   '&:hover': {
                     transform: 'translateY(-2px)',
                     boxShadow: '0 6px 8px -1px rgb(0 0 0 / 0.2)',
@@ -281,6 +284,7 @@ function App() {
           </Paper>
         </Container>
       </Box>
+      <Footer />
     </ThemeProvider>
   )
 }
